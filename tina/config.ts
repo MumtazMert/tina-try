@@ -63,6 +63,12 @@ export default defineConfig({
                   list: true,
                },
                {
+                  type: 'string',
+                  name: 'author',
+                  label: 'Author',
+                  description: 'The author of the post',
+               },
+               {
                   type: 'object',
                   name: 'blocks',
                   label: 'Content Blocks',
