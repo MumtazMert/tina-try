@@ -1,66 +1,39 @@
-"use client";
-import { useState, useEffect } from "react";
-import BlogList from "./components/BlogList";
 import { client } from "../tina/__generated__/client";
+import HomePage from "./HomePage";
 
-interface BlogPost {
-  title: string;
-  date: string;
-  excerpt?: string | null;
-  tags?: (string | null)[] | null;
-  _sys: {
-    filename: string;
-  };
-}
+export default async function Page() {
+  try {
+    const result = await client.queries.postConnection();
 
-export default function Home() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function fetchPosts() {
-      try {
-        setLoading(true);
-        const result = await client.queries.postConnection();
-
-        if (result.data?.postConnection?.edges) {
-          const fetchedPosts = result.data.postConnection.edges
-            .filter((edge) => edge?.node)
-            .map((edge) => edge!.node!)
-            .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-          setPosts(fetchedPosts);
-        }
-      } catch (err) {
-        console.error("Error fetching posts:", err);
-        setError("Failed to load posts");
-      } finally {
-        setLoading(false);
-      }
+    if (!result.data?.postConnection?.edges) {
+      return (
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-white mb-4">No posts found</h1>
+            <p className="text-gray-400">No blog posts are available.</p>
+          </div>
+        </div>
+      );
     }
 
-    fetchPosts();
-  }, []);
 
-  if (loading) {
+
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg text-gray-300">Loading...</div>
-      </div>
+      <HomePage
+        data={result.data}
+        query={result.query}
+        variables={result.variables}
+      />
     );
-  }
-
-  if (error) {
+  } catch (error) {
+    console.error("Error fetching posts:", error);
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-white mb-4">Error loading posts</h1>
-          <p className="text-gray-400">{error}</p>
+          <p className="text-gray-400">Failed to load blog posts.</p>
         </div>
       </div>
     );
   }
-
-  return <BlogList posts={posts} />;
 }

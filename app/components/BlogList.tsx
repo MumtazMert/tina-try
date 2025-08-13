@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { format } from 'date-fns';
 
 interface BlogPost {
+    id: string;
     title: string;
     date: string;
     excerpt?: string | null;

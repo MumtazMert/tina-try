@@ -7,15 +7,16 @@ import { videoBlock } from '../app/blocks/video-block.template';
 import { quoteBlock } from '../app/blocks/quote-block.template';
 
 // Your hosting provider likely exposes this as an environment variable
-const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main';
+const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main';
 
 export default defineConfig({
    branch,
 
    // Get this from tina.io
-   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID || 'temporary',
+
    // Get this from tina.io
-   token: process.env.TINA_TOKEN,
+   token: process.env.TINA_TOKEN || 'temporary',
 
    build: {
       outputFolder: 'admin',
@@ -23,16 +24,15 @@ export default defineConfig({
    },
    media: {
       tina: {
-         mediaRoot: '',
+         mediaRoot: 'uploads',
          publicFolder: 'public',
       },
    },
-   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
    schema: {
       collections: [
          {
             name: 'post',
-            label: 'Blog Posts',
+            label: 'Posts',
             path: 'content/posts',
             format: 'md',
             fields: [
@@ -40,6 +40,7 @@ export default defineConfig({
                   type: 'string',
                   name: 'title',
                   label: 'Title',
+                  isTitle: true,
                   required: true,
                },
                {
@@ -52,14 +53,12 @@ export default defineConfig({
                   type: 'string',
                   name: 'excerpt',
                   label: 'Excerpt',
-                  description: 'A brief description of the post',
                },
                {
                   type: 'string',
                   name: 'tags',
                   label: 'Tags',
                   list: true,
-                  description: 'Tags for categorizing the post',
                },
                {
                   type: 'object',
