@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import { useTina } from "tinacms/dist/react";
 import BlogPost from "../../components/BlogPost";
 import Link from "next/link";

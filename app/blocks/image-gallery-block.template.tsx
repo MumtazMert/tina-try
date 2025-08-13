@@ -63,8 +63,6 @@ export const imageGalleryBlock: Template = {
             description: 'Number of columns for grid layout',
             ui: {
                 component: 'number',
-                min: 1,
-                max: 6,
             }
         },
         {

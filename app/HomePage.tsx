@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import { useTina } from "tinacms/dist/react";
 import BlogList from "./components/BlogList";
 
@@ -19,7 +19,7 @@ export default function HomePage(props: HomePageProps) {
         data: props.data,
     });
 
-    console.log("useTina data:", data);
+
 
     if (!data?.postConnection?.edges) {
         return (

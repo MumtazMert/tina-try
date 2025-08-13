@@ -60,26 +60,6 @@ export default function BlockRenderer({ blocks }: BlockRendererProps) {
                         );
 
                     // Add more block types here as you create them
-                    case 'ImageGalleryBlock':
-                        return (
-                            <div key={index} className="my-8 p-4 bg-gray-800 rounded-lg">
-                                <p className="text-gray-400">Image Gallery Block - Coming Soon</p>
-                            </div>
-                        );
-
-                    case 'TableBlock':
-                        return (
-                            <div key={index} className="my-8 p-4 bg-gray-800 rounded-lg">
-                                <p className="text-gray-400">Table Block - Coming Soon</p>
-                            </div>
-                        );
-
-                    case 'VideoBlock':
-                        return (
-                            <div key={index} className="my-8 p-4 bg-gray-800 rounded-lg">
-                                <p className="text-gray-400">Video Block - Coming Soon</p>
-                            </div>
-                        );
 
                     default:
                         return (

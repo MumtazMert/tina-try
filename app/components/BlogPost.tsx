@@ -1,4 +1,6 @@
+import React from 'react';
 import { format } from 'date-fns';
+import Image from 'next/image';
 import BlockRenderer from './blocks/BlockRenderer';
 
 interface BlogPostProps {
@@ -55,7 +57,7 @@ function renderRichTextItem(item: RichTextNode): React.ReactNode {
         return null;
     }
 
-    const { type, children, text, url, alt, caption } = item;
+    const { type, children, text, url, alt } = item;
 
     switch (type) {
         case 'root':
@@ -112,15 +114,32 @@ function renderRichTextItem(item: RichTextNode): React.ReactNode {
             );
 
         case 'p':
-            return (
-                <p className="text-gray-300 leading-relaxed mb-4">
-                    {children?.map((child: RichTextNode, index: number) => (
-                        <span key={index}>
-                            {renderRichTextItem(child)}
-                        </span>
-                    ))}
-                </p>
-            );
+            // Check if any children are images
+            const hasImages = children?.some((child: RichTextNode) => child.type === 'img');
+
+            if (hasImages) {
+                // If there are images, render each child separately
+                return (
+                    <>
+                        {children?.map((child: RichTextNode, index: number) => (
+                            <React.Fragment key={index}>
+                                {renderRichTextItem(child)}
+                            </React.Fragment>
+                        ))}
+                    </>
+                );
+            } else {
+                // Normal paragraph rendering
+                return (
+                    <p className="text-gray-300 leading-relaxed mb-4">
+                        {children?.map((child: RichTextNode, index: number) => (
+                            <span key={index}>
+                                {renderRichTextItem(child)}
+                            </span>
+                        ))}
+                    </p>
+                );
+            }
 
         case 'blockquote':
             return (
@@ -208,18 +227,13 @@ function renderRichTextItem(item: RichTextNode): React.ReactNode {
 
         case 'img':
             return (
-                <div className="my-6">
-                    <img
-                        src={url}
-                        alt={alt || ''}
-                        className="max-w-full h-auto rounded-lg"
-                    />
-                    {caption && (
-                        <p className="text-sm text-gray-400 text-center mt-2">
-                            {caption}
-                        </p>
-                    )}
-                </div>
+                <Image
+                    src={url || ''}
+                    alt={alt || ''}
+                    width={800}
+                    height={600}
+                    className="max-w-full h-auto rounded-lg my-6"
+                />
             );
 
         case 'hr':

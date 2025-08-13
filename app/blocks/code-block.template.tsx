@@ -60,7 +60,6 @@ export const codeBlock: Template = {
             description: 'The actual code content',
             ui: {
                 component: 'textarea',
-                rows: 10,
             },
             required: true,
         },

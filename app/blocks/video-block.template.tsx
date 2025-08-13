@@ -49,7 +49,6 @@ export const videoBlock: Template = {
             description: 'Custom embed code (for custom videos)',
             ui: {
                 component: 'textarea',
-                rows: 5,
             },
         },
         {
@@ -59,8 +58,6 @@ export const videoBlock: Template = {
             description: 'Width of the video in pixels',
             ui: {
                 component: 'number',
-                min: 200,
-                max: 1200,
             }
         },
         {
@@ -70,8 +67,6 @@ export const videoBlock: Template = {
             description: 'Height of the video in pixels',
             ui: {
                 component: 'number',
-                min: 150,
-                max: 800,
             }
         },
         {
