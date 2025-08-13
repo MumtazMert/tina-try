@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface QuoteBlockProps {
     quote: string;
     author?: string;
@@ -50,18 +52,18 @@ export default function QuoteBlock({
         <blockquote className={`my-8 p-6 rounded-lg ${bgStyle} ${alignStyle}`}>
             <div className={`${textStyle} text-gray-200 leading-relaxed`}>
                 {showQuotes && (
-                    <span className="text-4xl text-gray-500 mr-2">"</span>
+                    <span className="text-4xl text-gray-500 mr-2"></span>
                 )}
                 <span dangerouslySetInnerHTML={{ __html: quote }} />
                 {showQuotes && (
-                    <span className="text-4xl text-gray-500 ml-2">"</span>
+                    <span className="text-4xl text-gray-500 ml-2"></span>
                 )}
             </div>
 
             {(author || source) && (
                 <footer className="mt-4 flex items-center space-x-3">
                     {authorImage && (
-                        <img
+                        <Image
                             src={authorImage}
                             alt={author || 'Author'}
                             className="w-10 h-10 rounded-full object-cover"
