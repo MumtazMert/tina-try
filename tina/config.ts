@@ -6,6 +6,8 @@ import { tableBlock } from '../app/blocks/table-block.template';
 import { videoBlock } from '../app/blocks/video-block.template';
 import { quoteBlock } from '../app/blocks/quote-block.template';
 
+// TinaCMS configuration for blog with content blocks
+
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main';
 
