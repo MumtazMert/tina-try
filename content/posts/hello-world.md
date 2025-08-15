@@ -1,9 +1,9 @@
 ---
-title: Blog 1
+title: Blog 5
 date: 2024-01-15T10:00:00.000Z
 excerpt: >-
-  Welcome to my new blog! This is my first post where I'll be sharing my
-  thoughts on programming, technology, and everything in between.
+  Deneme 1 - 2! This is my first post where I'll be sharing my thoughts on
+  programming, technology, and everything in between.
 tags:
   - programming
   - blog
