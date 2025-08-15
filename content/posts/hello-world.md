@@ -44,4 +44,4 @@ Stay tuned for more content. I'll be posting regularly, so make sure to check ba
 
 ***
 
-*Thanks for reading! Feel free to reach out on [Twitter](https://twitter.com) or [GitHub](https://github.com) if you have any questions or suggestions.*
+*Thanks for reading! Feel free to reach out on [Twitter](https://twitter.com) or [GitHub](https://github.com) if you have any questions or suggestions.*![](/uploads/arkaplan.png)
